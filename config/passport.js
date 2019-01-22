@@ -1,13 +1,13 @@
-const JwtStrategy = require('passport-jwt').Strategy; // set up jvt token strategy
-const ExtractJwt = require('passport-jwt').ExtractJwt; // set up extract JWT
+const JwtStrategy = require('passport-jwt').Strategy, // set up jvt token strategy
+ ExtractJwt = require('passport-jwt').ExtractJwt; // set up extract JWT
 
 // load up the user model
-const User = require('../models/user'); // get the user model
-const config = require('./database'); // get db config file
+var User = require('../models/users'); // get the user model
+var config = require('./database'); // get db config file
 
 module.exports = function(passport) {
-    let opts = {};
-    let jwtOptions = {
+    var opts = {};
+    var jwtOptions = {
         jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("jwt"),
         secretOrKey: config.secret
     };

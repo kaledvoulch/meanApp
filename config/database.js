@@ -1,4 +1,4 @@
 module.exports = {
-    'secret':'nodeauthsecret',
+    'secret': 'nodeauthsecret',
     'database': 'mongodb://localhost/filmreviews'
 }

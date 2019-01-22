@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
-
-var UserSchema = new mongoose.Schema ({
+var UserSchema = new mongoose.Schema({
     email: {
         type: String,
         lowercase: true,
@@ -31,17 +30,15 @@ UserSchema.pre('save', function(next){
         return next();
     }
 
-    // code to generate salt for encryption
-    bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
+    bcrypt.genSalt(SALT_FACTOR, function(err, salt){
 
-        if (err) {
+        if(err){
             return next(err);
         }
 
-        // code to hash password
-        bcrypt.hash(user.password, salt, null, function(err, hash) {
+        bcrypt.hash(user.password, salt, null, function(err, hash){
 
-            if (err) {
+            if(err){
                 return next(err);
             }
 
@@ -51,16 +48,20 @@ UserSchema.pre('save', function(next){
         });
 
     });
+
 });
 
 UserSchema.methods.comparePassword = function(passwordAttempt, cb){
+
     bcrypt.compare(passwordAttempt, this.password, function(err, isMatch){
 
         if(err){
             return cb(err);
-        }
-        else {
+        } else {
             cb(null, isMatch);
         }
     });
+
 }
+
+module.exports = mongoose.model('User', UserSchema);

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Scheme;
+var Schema = mongoose.Schema;
 
 var FilmSchema = new Schema ({
     title: {
@@ -34,4 +34,4 @@ var FilmSchema = new Schema ({
     timestamps:true
 });
 
-module.exports = mongoose.model{'Film', FilmSchema};
+module.exports = mongoose.model('Film', FilmSchema);
